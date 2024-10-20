@@ -1,20 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import Main from "./src/screens/main/main";
+import Schedule from "./src/screens/schedule/schedule";
+import ServicePage from "./src/screens/servicePage/servicePage";
+
 
 export default function App() {
+ 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      {/* <Main/> */}
+      {/* <ServicePage/> */}
+      <Schedule/>
+    </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
