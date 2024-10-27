@@ -2,32 +2,50 @@ import { FlatList, Text, View } from "react-native";
 import styles from "./homePage.style";
 import { mock } from "./mock";
 import DoctorBox from "../../components/doctorBox/doctorBox";
+import { useEffect, useState } from "react";
+import api from "../../constants/api";
 
 function HomePage(props) {
+  const [doctors, setDoctors] = useState([]);
 
-  const ClickDoctor = (id_doctor,doctorName, gender, doctorSpeciality) => {
+  const ClickDoctor = (id_doctor,doctorName, icon, doctorSpeciality) => {
     props.navigation.navigate('services', 
       {id_doctor,
       doctorName, 
-      gender, 
+      icon, 
       doctorSpeciality
     });
   }
 
+  async function getDoctors() {
+    try{
+      const response = await api.get('/doctors');
+      if(response.data) {
+        console.log(response.data);
+        setDoctors(response.data);
+      }
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => { 
+    getDoctors();
+  }, []);
 
   return (
     <View style={styles.container}>
         <View style={styles.doctorContainer}>
             <Text style={styles.titleText}>Agende seu médico agora mesmo</Text>
             <FlatList 
-                data={mock}
+                data={doctors}
                 keyExtractor={(doc)=> doc.name}
                 showsVerticalScrollIndicator={false}
                 renderItem={({item})=>{
                     return(<DoctorBox 
                         id_doctor={item.id_doctor}
                         doctorName={item.name} 
-                        gender={item.gender} 
+                        icon={item.icon} 
                         doctorSpeciality={item.speciality}
                         onPress={ClickDoctor}
                         />)

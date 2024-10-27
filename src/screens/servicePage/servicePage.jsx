@@ -8,9 +8,8 @@ import { Female, Male } from "../../constants/icons";
 
 function ServicePage(props) {
 
-    const {id_doctor, doctorName, gender, doctorSpeciality} = props.route.params;
+    const {id_doctor, doctorName, icon, doctorSpeciality} = props.route.params;
     const ClickService = (id_service) => {
-        console.log(id_service);
         props.navigation.navigate('schedule', {
             id_doctor,
             id_service,
@@ -20,8 +19,8 @@ function ServicePage(props) {
     return (
         <View style={styles.container}>
             <View style={styles.banner}>
-                <Image source={gender=='male'?Male:Female} style={{width:100, height:100, marginBottom:10}} />
-                <Text style={[styles.bannerText, styles.bannerTitle]}>{gender=='male'?'Dr. ':'Dra. '}{doctorName}</Text>
+                <Image source={icon=='male'?Male:Female} style={{width:100, height:100, marginBottom:10}} />
+                <Text style={[styles.bannerText, styles.bannerTitle]}>{doctorName}</Text>
                 <Text style={styles.bannerText}>{doctorSpeciality}</Text>
             </View>
             <FlatList 
