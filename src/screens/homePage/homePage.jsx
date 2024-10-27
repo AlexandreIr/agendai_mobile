@@ -1,10 +1,15 @@
-import { FlatList, Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { FlatList, Text, View } from "react-native";
 import styles from "./homePage.style";
 import { mock } from "./mock";
 import DoctorBox from "../../components/doctorBox/doctorBox";
-import { Logo } from "../../constants/icons";
 
-function HomePage() {
+function HomePage(props) {
+
+  const ClickDoctor = (id_doctor,doctorName, gender, doctorSpeciality) => {
+    props.navigation.navigate('services');
+  }
+
+
   return (
     <View style={styles.container}>
         <View style={styles.doctorContainer}>
@@ -14,9 +19,13 @@ function HomePage() {
                 keyExtractor={(doc)=> doc.name}
                 showsVerticalScrollIndicator={false}
                 renderItem={({item})=>{
-                    return(<DoctorBox doctorName={item.name} 
+                    return(<DoctorBox 
+                        id_doctor={item.id_doctor}
+                        doctorName={item.name} 
                         gender={item.gender} 
-                        doctorSpeciality={item.speciality}/>)
+                        doctorSpeciality={item.speciality}
+                        onPress={ClickDoctor}
+                        />)
                 }}
             />
         </View>

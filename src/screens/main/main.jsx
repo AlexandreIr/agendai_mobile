@@ -1,5 +1,4 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { NavigationContainer } from "@react-navigation/native";
 
 import HomePage from "../homePage/homePage";
 import CalendarPage from "../calendarPage/calendarPage";
@@ -12,7 +11,6 @@ const Tab = createBottomTabNavigator();
 
 function Main() {
   return (
-    <NavigationContainer>
         <Tab.Navigator>
             <Tab.Screen name='Home' component={HomePage} options={{
                 headerTitleAlign:'center',
@@ -63,7 +61,6 @@ function Main() {
                 }
             }}/> 
         </Tab.Navigator>
-    </NavigationContainer>
   )
 }
 

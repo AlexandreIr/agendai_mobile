@@ -5,7 +5,7 @@ export const styles = {
         flex:1,
         width:'100%',
         gap:10,
-        marginTop:20,
+        paddingTop:20,
         backgroundColor:'white'
     },
     primary:{
