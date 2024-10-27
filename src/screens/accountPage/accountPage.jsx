@@ -6,21 +6,34 @@ import Button from '../../components/button/button';
 import {Logo} from '../../constants/icons';
 
 
-function AccountPage() {
+function AccountPage(props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handlClick = () =>{
-        if(email!=''&&name!=''&&password!=''){
-            Alert.alert(`Você foi cadastrado com sucesso, ${name}`);
-            setName('');
-            setEmail('');
-            setPassword('');
-        } else {
-            Alert.alert('Preencha todos os campos');
+    const handleCreateAccount = async() => {
+      try {
+        const response = await api.post('/users/register', { name, email, password });
+        if(response.data) {
+          Alert.alert('Usuário criado com sucesso!');
+          setName('');
+          setEmail('');
+          setPassword('');
         }
+      } catch (error) {
+        if(error.response.data.error){
+          Alert.alert(error.response.data.error);
+        } else {
+          Alert.alert("Um erro ocorreu"+error.message);
+        }
+      }
     }
+
+    const handleLoginPage = () => {
+      props.navigation.navigate('login');
+    }
+
+
     return (
     <View style={styles.container}>
       <View style={styles.containerLogo}>
@@ -48,12 +61,12 @@ function AccountPage() {
           style={styles.textComponent}
         />
       <Button 
-        onClick={handlClick}
+        onClick={handleCreateAccount}
         text='Criar conta'/>
       </View>
       <View style={styles.footer}>
         <Text>Já tenho conta. </Text>
-        <TouchableOpacity> 
+        <TouchableOpacity onPress={handleLoginPage}> 
           <Text style={styles.clicableText}>Fazer login aqui.</Text>
         </TouchableOpacity>
       </View>

@@ -2,7 +2,7 @@ import { COLORS, FONTSIZE } from "../../constants/theme"
 
 const styles = {
     container:{
-        backgroundColor:COLORS.who,
+        backgroundColor:'white',
         flex:1,
         padding:50,
         justifyContent: 'space-between'
