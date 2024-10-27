@@ -3,7 +3,6 @@ import { COLORS, FONTSIZE } from "../../constants/theme";
 export const styles={
     container:{
         flex:1,
-        marginTop:30,
     },
     banner:{
         backgroundColor:COLORS.blue,

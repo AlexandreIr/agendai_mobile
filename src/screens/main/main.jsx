@@ -14,6 +14,7 @@ function Main() {
         <Tab.Navigator>
             <Tab.Screen name='Home' component={HomePage} options={{
                 headerTitleAlign:'center',
+                headerShadowVisible:false,
                 headerTitle: ()=>{
                     return (<Image source={Logo} 
                         style={{width:125, height:29}}/>)
@@ -30,6 +31,7 @@ function Main() {
             }}/> 
             <Tab.Screen name='Calendar' component={CalendarPage} options={{
                 headerTitleAlign:'center',
+                headerShadowVisible:false,
                 headerTitle: ()=>{
                     return (<Image source={Logo} 
                         style={{width:125, height:29}}/>)
@@ -46,6 +48,7 @@ function Main() {
             }}/> 
             <Tab.Screen name='Profile' component={ProfilePage} options={{
                 headerTitleAlign:'center',
+                headerShadowVisible:false,
                 headerTitle: ()=>{
                     return (<Image source={Logo} 
                         style={{width:125, height:29}}/>)

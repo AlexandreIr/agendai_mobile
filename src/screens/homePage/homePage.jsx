@@ -6,7 +6,12 @@ import DoctorBox from "../../components/doctorBox/doctorBox";
 function HomePage(props) {
 
   const ClickDoctor = (id_doctor,doctorName, gender, doctorSpeciality) => {
-    props.navigation.navigate('services');
+    props.navigation.navigate('services', 
+      {id_doctor,
+      doctorName, 
+      gender, 
+      doctorSpeciality
+    });
   }
 
 

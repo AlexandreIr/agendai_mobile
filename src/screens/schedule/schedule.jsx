@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Alert, Text, View } from "react-native";
 import { styles } from "./schedule.style";
 import { Calendar, LocaleConfig } from "react-native-calendars";
 
@@ -10,9 +10,16 @@ import Button from "../../components/button/button";
 LocaleConfig.locales['pt-BR'] = ptBR;
 LocaleConfig.defaultLocale = 'pt-BR'
 
-function Schedule() {
+function Schedule(props) {
+    const {id_doctor, id_service} = props.route.params;
     const [selected, setSelected] = useState(new Date().toISOString().slice(0, 10));
     const [selctedHour, setSelectedHour] = useState('');
+
+    const ClickBooking = () => {
+        console.log(id_doctor, id_service, selected, selctedHour);
+        Alert.alert(`${id_doctor} - ${id_service} - ${selected} - ${selctedHour}`);
+    }
+
 
     return (
         <View style={styles.container}>
@@ -44,7 +51,7 @@ function Schedule() {
                 </View>
             </View>
             <View>
-                <Button text='Confirmar reserva'/>
+                <Button text='Confirmar reserva' onClick={ClickBooking}/>
             </View>
         </View>
     )
