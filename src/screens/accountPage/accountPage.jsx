@@ -1,37 +1,40 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { Alert, Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import styles from './account.style';
 import Button from '../../components/button/button';
 import {Logo} from '../../constants/icons';
+import api from '../../constants/api';
+import { AuthContext } from '../../contexts/authContext';
 
 
 function AccountPage(props) {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const handleCreateAccount = async() => {
-      try {
-        const response = await api.post('/users/register', { name, email, password });
-        if(response.data) {
-          Alert.alert('Usuário criado com sucesso!');
-          setName('');
-          setEmail('');
-          setPassword('');
-        }
-      } catch (error) {
-        if(error.response.data.error){
-          Alert.alert(error.response.data.error);
-        } else {
-          Alert.alert("Um erro ocorreu"+error.message);
-        }
-      }
-    }
-
+ 
     const handleLoginPage = () => {
       props.navigation.navigate('login');
     }
+
+    const handleCreateAccount = async() => {
+      try {
+          const response = await api.post('/users/register', { name, email, password });
+          if(response?.data) {
+              Alert.alert('Usuário criado com sucesso!');
+              handleLoginPage();
+          }
+      } catch (error) {
+          console.error('Erro ao criar usuário:', error); 
+          if(error.response?.data?.error) {
+              Alert.alert('Erro', error.response.data.error);
+          } else {
+              Alert.alert('Erro', "Um erro ocorreu: " + error.message);
+          }
+      }
+  }
+  
+
 
 
     return (

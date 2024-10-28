@@ -2,8 +2,9 @@ import { FlatList, Text, View } from "react-native";
 import styles from "./homePage.style";
 import { mock } from "./mock";
 import DoctorBox from "../../components/doctorBox/doctorBox";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import api from "../../constants/api";
+import { AuthContext } from "../../contexts/authContext";
 
 function HomePage(props) {
   const [doctors, setDoctors] = useState([]);

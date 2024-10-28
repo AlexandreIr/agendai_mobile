@@ -37,6 +37,7 @@ function Main() {
                         style={{width:125, height:29}}/>)
                 },
                 tabBarShowLabel:false,
+                unmountOnBlur:true,
                 tabBarIcon:({focused})=>{
                     return(<Image source={Calendar} 
                         style={{
@@ -54,6 +55,7 @@ function Main() {
                         style={{width:125, height:29}}/>)
                 },
                 tabBarShowLabel:false,
+                unmountOnBlur:true,
                 tabBarIcon:({focused})=>{
                     return(<Image source={Profile} 
                         style={{
