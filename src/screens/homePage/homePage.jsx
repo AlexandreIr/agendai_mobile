@@ -17,11 +17,10 @@ function HomePage(props) {
     });
   }
 
-  async function getDoctors() {
+  const getDoctors = async()=> {
     try{
       const response = await api.get('/doctors');
       if(response.data) {
-        console.log(response.data);
         setDoctors(response.data);
       }
     } catch(error) {
@@ -46,7 +45,7 @@ function HomePage(props) {
                         id_doctor={item.id_doctor}
                         doctorName={item.name} 
                         icon={item.icon} 
-                        doctorSpeciality={item.speciality}
+                        doctorSpeciality={item.specialty}
                         onPress={ClickDoctor}
                         />)
                 }}

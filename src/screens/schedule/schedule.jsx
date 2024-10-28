@@ -6,6 +6,7 @@ import { ptBR } from "../../constants/calendar";
 import { useState } from "react";
 import { Picker } from "@react-native-picker/picker";
 import Button from "../../components/button/button";
+import api from "../../constants/api";
 
 LocaleConfig.locales['pt-BR'] = ptBR;
 LocaleConfig.defaultLocale = 'pt-BR'
@@ -15,9 +16,22 @@ function Schedule(props) {
     const [selected, setSelected] = useState(new Date().toISOString().slice(0, 10));
     const [selctedHour, setSelectedHour] = useState('');
 
-    const ClickBooking = () => {
-        console.log(id_doctor, id_service, selected, selctedHour);
-        Alert.alert(`${id_doctor} - ${id_service} - ${selected} - ${selctedHour}`);
+    const ClickBooking = async() => {
+        try {
+            const response = await api.post('/appointments', {
+                id_doctor,
+                id_service,
+                booking_date: selected,
+                booking_hour: selctedHour
+            });
+
+            if(response.data) {
+                Alert.alert('Agendamento realizado com sucesso!');
+                props.navigation.popToTop();
+            }
+        } catch (error) {
+            console.log(error.message);
+        }
     }
 
 

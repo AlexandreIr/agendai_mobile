@@ -34,4 +34,7 @@ export const styles = {
     text:{
         fontSize:FONTSIZE.large
     },
+    btn:{
+        margin:20
+    }
 }
